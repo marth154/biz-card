@@ -14,7 +14,7 @@ export default function Index() {
     <BrowserRouter>
       <Routes>
         <Route path="/user" element={<User />} />
-        <Route path="/user/:id" element={<UserbyId />} />
+        <Route path="user/:id" element={<UserbyId />} />
         <Route path="/" element={<App />} />
       </Routes>
     </BrowserRouter>
