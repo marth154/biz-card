@@ -1,11 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./page/App";
+import User from "./page/User";
+import UserbyId from "./page/UserbyId";
 import reportWebVitals from "./service/reportWebVitals";
 import * as serviceWorkerRegistration from "./service/serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+
+export default function Index() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/user" element={<User />} />
+        <Route path="/user/:id" element={<UserbyId />} />
+        <Route path="/" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+root.render(<Index />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
