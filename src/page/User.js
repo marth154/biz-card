@@ -28,7 +28,7 @@ export default function User() {
 
   useEffect(() => {
     const user = getLocaleStorage();
-    if (user) window.location.href = `/${JSON.parse(user.id)}`;
+    if (user.id != null) window.location.href = `/${JSON.parse(user.id)}`;
   }, []);
   return (
     <div className="User">
