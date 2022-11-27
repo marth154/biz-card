@@ -16,6 +16,9 @@ export default function UserbyId() {
       } catch (error) {
         window.location.href = "/404";
       }
+      try {
+        await new ClientAPI(`/coord/${id}`).get();
+      } catch (error) {}
     };
     fetchUser();
   }, [id]);
