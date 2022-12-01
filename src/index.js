@@ -1,3 +1,4 @@
+import { MantineProvider } from "@mantine/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -11,13 +12,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export default function Index() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<User />} />
-        <Route path="/:id" element={<UserbyId />} />
-        <Route path="/404" element={<Page404 />} />
-      </Routes>
-    </BrowserRouter>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<User />} />
+          <Route path="/:id" element={<UserbyId />} />
+          <Route path="/404" element={<Page404 />} />
+        </Routes>
+      </BrowserRouter>
+    </MantineProvider>
   );
 }
 root.render(<Index />);

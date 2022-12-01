@@ -1,6 +1,7 @@
 import { gapi } from "gapi-script";
 import React, { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
+import { redirect } from "react-router-dom";
 import ClientAPI from "../client/clientApi";
 import createLocalStorage from "../utils/createLocalStorage";
 import getLocaleStorage from "../utils/getLocalStorage";
@@ -10,7 +11,8 @@ export default function User() {
   const handleSuccess = async (googleData) => {
     const res = await new ClientAPI("/user/auth").post({ googleData });
     createLocalStorage(res.data);
-    window.location.href = `/${res.data.id}`;
+    redirect(`/${res.data.id}`);
+    // window.location.href = `/${res.data.id}`;
   };
 
   const handleError = (error) => {

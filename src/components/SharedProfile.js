@@ -1,3 +1,3 @@
 export default function ShareProfile() {
-  return <p>QR CODE: </p>;
+  return <p>Shared Profile: </p>;
 }
