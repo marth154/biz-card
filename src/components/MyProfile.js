@@ -1,37 +1,11 @@
-import { Button, /* Loader,  */ Stack, Text, TextInput } from "@mantine/core";
+import { Button, Stack, Text, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { /* useEffect, */ useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ClientAPI from "../client/clientApi";
 import GenerateQRCode from "./GenerateQRCode";
 
 export default function MyProfile({ coord }) {
-  // const [loader, setLoader] = useState(true);
-  // const [email, setEmail] = useState();
-  // const [phone, setPhone] = useState();
-  // const [place, setPlace] = useState();
   const [openQR, setOpenQR] = useState(false);
-  // const isToUpdate = email || phone || place;
-  // const [disabledButton, setDisabledButton] = useState(true);
-
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     try {
-  //       const res = await new ClientAPI("/coord").get();
-  //       if (res) {
-  //         const { email, place, phone } = res.data;
-  //         setEmail(email);
-  //         setPhone(phone);
-  //         setPlace(place);
-  //         setDisabledButton(true);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetch();
-  //   setLoader(false);
-  // }, []);
 
   const handleSubmit = async (values) => {
     const { email, phone, place } = values;
@@ -62,7 +36,7 @@ export default function MyProfile({ coord }) {
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
 
