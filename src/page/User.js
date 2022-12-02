@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import { redirect } from "react-router-dom";
 import ClientAPI from "../client/clientApi";
-import createLocalStorage from "../utils/createLocalStorage";
-import getLocaleStorage from "../utils/getLocalStorage";
+import createLocalStorage from "../utils/function/createLocalStorage";
+import getLocaleStorage from "../utils/function/getLocalStorage";
 
 export default function User() {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH;
@@ -12,7 +12,6 @@ export default function User() {
     const res = await new ClientAPI("/user/auth").post({ googleData });
     createLocalStorage(res.data);
     redirect(`/${res.data.id}`);
-    // window.location.href = `/${res.data.id}`;
   };
 
   const handleError = (error) => {
@@ -29,8 +28,8 @@ export default function User() {
   });
 
   useEffect(() => {
-    const user = getLocaleStorage();
-    if (user.id != null) window.location.href = `/${JSON.parse(user.id)}`;
+    const { user } = getLocaleStorage();
+    if (user != null) window.location.href = `/${user.id}`;
   }, []);
   return (
     <div className="User">

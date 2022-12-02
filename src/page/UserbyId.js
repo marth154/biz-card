@@ -4,12 +4,22 @@ import { useParams } from "react-router-dom";
 import ClientAPI from "../client/clientApi";
 import MyProfile from "../components/MyProfile";
 import SharedProfile from "../components/SharedProfile";
-import getLocaleStorage from "../utils/getLocalStorage";
+import LayoutShareProfile from "../layout/LayoutShareProfile";
+import getLocaleStorage from "../utils/function/getLocalStorage";
+import setCoordLocalStorage from "../utils/function/setCoordLocalStorage";
 
 export default function UserbyId() {
   const { id } = useParams();
   const [coord, setCoord] = useState();
-  const user = getLocaleStorage();
+  const { user } = getLocaleStorage();
+
+  const fetchCoord = async () => {
+    try {
+      const res = await new ClientAPI(`/coord`).get();
+      setCoordLocalStorage(res.data);
+      setCoord(res.data);
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,22 +28,24 @@ export default function UserbyId() {
       } catch (error) {
         window.location.href = "/404";
       }
-      try {
-        const res = await new ClientAPI(`/coord`).get();
-        setCoord(res.data);
-      } catch (error) {}
+      fetchCoord();
     };
     fetchUser();
   }, [id]);
+
   return (
     <>
-      <Container>
-        {id === JSON.parse(user.id) ? (
-          <MyProfile coord={coord} />
-        ) : (
-          <SharedProfile />
-        )}
-      </Container>
+      {user && id === user.id ? (
+        <LayoutShareProfile>
+          <Container>
+            <MyProfile coord={coord} fetchCoord={fetchCoord} />
+          </Container>
+        </LayoutShareProfile>
+      ) : (
+        <Container>
+          <SharedProfile id={id} />
+        </Container>
+      )}
     </>
   );
 }

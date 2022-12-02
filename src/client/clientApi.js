@@ -1,5 +1,5 @@
 import axios from "axios";
-import getLocaleStorage from "../utils/getLocalStorage";
+import getLocaleStorage from "../utils/function/getLocalStorage";
 
 export default class ClientAPI {
   static urlApi;
@@ -8,12 +8,12 @@ export default class ClientAPI {
   constructor(route) {
     this.urlApi = process.env.REACT_APP_API_URL;
     this.route = route;
-    this.user = getLocaleStorage();
+    this.user = getLocaleStorage().user;
   }
   async get() {
     return await axios
       .get(`${this.urlApi}${this.route}`, {
-        headers: { id: this.user.id },
+        headers: { id: this.user?.id },
       })
       .then((res) => {
         return res;
@@ -23,7 +23,7 @@ export default class ClientAPI {
   async post(body) {
     return await axios
       .post(`${this.urlApi}${this.route}`, body, {
-        headers: { id: this.user.id },
+        headers: { id: this.user?.id },
       })
       .then((res) => {
         return res;
@@ -33,7 +33,7 @@ export default class ClientAPI {
   async put(body) {
     return await axios
       .put(`${this.urlApi}${this.route}`, body, {
-        headers: { id: this.user.id },
+        headers: { id: this.user?.id },
       })
       .then((res) => {
         return res;
@@ -43,7 +43,7 @@ export default class ClientAPI {
   async delete() {
     return await axios
       .delete(`${this.urlApi}${this.route}`, {
-        headers: { id: this.user.id },
+        headers: { id: this.user?.id },
       })
       .then((res) => {
         return res;

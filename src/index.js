@@ -11,8 +11,15 @@ import * as serviceWorkerRegistration from "./service/serviceWorkerRegistration"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export default function Index() {
+  const themePreference = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colorScheme: themePreference ? "dark" : "light"
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<User />} />
