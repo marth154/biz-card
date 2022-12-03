@@ -7,7 +7,7 @@ import SharedProfile from "../components/SharedProfile";
 import LayoutProfile from "../layout/LayoutProfile";
 import LayoutSharedProfile from "../layout/LayoutSharedProfile";
 import getLocaleStorage from "../utils/function/getLocalStorage";
-import setCoordLocalStorage from "../utils/function/setCoordLocalStorage";
+import setCoordLocalStorage from "../utils/function/setLocalStorage";
 
 export default function UserbyId() {
   const { id } = useParams();

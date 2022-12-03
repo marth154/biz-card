@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Page404 from "./page/404";
+import ShareQRCOde from "./page/ShareQRCode";
 import User from "./page/User";
 import UserbyId from "./page/UserbyId";
 import reportWebVitals from "./service/reportWebVitals";
@@ -17,7 +18,7 @@ export default function Index() {
       withGlobalStyles
       withNormalizeCSS
       theme={{
-        colorScheme: themePreference ? "dark" : "light"
+        colorScheme: themePreference ? "dark" : "light",
       }}
     >
       <BrowserRouter>
@@ -25,6 +26,7 @@ export default function Index() {
           <Route path="/" element={<User />} />
           <Route path="/:id" element={<UserbyId />} />
           <Route path="/404" element={<Page404 />} />
+          <Route path="/share" element={<ShareQRCOde />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>

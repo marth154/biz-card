@@ -2,14 +2,14 @@ import { gapi } from "gapi-script";
 import React, { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import ClientAPI from "../client/clientApi";
-import createLocalStorage from "../utils/function/createLocalStorage";
 import getLocaleStorage from "../utils/function/getLocalStorage";
+import setCoordLocalStorage from "../utils/function/setLocalStorage";
 
 export default function User() {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH;
   const handleSuccess = async (googleData) => {
     const res = await new ClientAPI("/user/auth").post({ googleData });
-    createLocalStorage(res.data);
+    setCoordLocalStorage(undefined, res.data);
     console.log(res.data);
     window.location.href = `/${res.data.id}`;
   };

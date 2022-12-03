@@ -5,7 +5,7 @@ export default function GenerateQRCode({ setOpenQR, link }) {
   return (
     <>
       <Group position="right" sx={{ marginTop: 10 }}>
-        <CloseButton onClick={() => setOpenQR(false)} size="xl" />
+        {setOpenQR && <CloseButton onClick={() => setOpenQR(false)} size="xl" />}
       </Group>
       <div
         style={{
