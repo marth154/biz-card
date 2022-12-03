@@ -162,7 +162,7 @@ export default function MyProfile({ coord, fetchCoord }) {
             placeholder="Entrez votre adresse"
             {...form.getInputProps("place")}
           />
-          <Accordion>
+          <Accordion defaultValue="socialNetwork">
             <Accordion.Item value="socialNetwork">
               <Accordion.Control>Mes réseaux</Accordion.Control>
               <Accordion.Panel>

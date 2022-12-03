@@ -23,7 +23,7 @@ export default function LayoutProfile({ children }) {
       </Header>
       {children}
       <div className={classes.footer}>
-        <Group spacing="xl">
+        <Group spacing="xl" className={classes.groupFooter}>
           <ActionIcon
             size="xl"
             variant="default"

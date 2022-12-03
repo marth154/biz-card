@@ -29,7 +29,7 @@ export default function UserbyId() {
       } catch (error) {
         window.location.href = "/404";
       }
-      fetchCoord(); 
+      fetchCoord();
     };
     fetchUser();
   }, [id]);
@@ -38,7 +38,7 @@ export default function UserbyId() {
     <>
       {user && id === user.id ? (
         <LayoutProfile>
-          <Container>
+          <Container sx={{ overflow: "scroll", paddingBottom: "2.5rem" }}>
             <MyProfile coord={coord} fetchCoord={fetchCoord} />
           </Container>
         </LayoutProfile>
