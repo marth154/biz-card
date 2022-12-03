@@ -1,44 +1,11 @@
-import { ActionIcon, Button, createStyles, Group, Header } from "@mantine/core";
+import { ActionIcon, Button, Group, Header } from "@mantine/core";
 import { IconLink, IconQrcode } from "@tabler/icons";
 import { useState } from "react";
 import GenerateQRCode from "../components/GenerateQRCode";
+import useStyles from "../utils/style";
 
-const useStyles = createStyles((theme) => ({
-  footer: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-    display: "flex",
-    position: "absolute",
-    bottom: 0,
-    zIndex: 999,
-    width: "100%",
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[5]
-        : theme.colors.gray[2],
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: `${theme.spacing.md}px ${theme.spacing.md}px`,
 
-    [theme.fn.smallerThan("sm")]: {
-      flexDirection: "column",
-    },
-  },
-
-  header: {
-    display: "flex",
-    justifyContent: "center",
-    borderBottom: 0,
-    [theme.fn.smallerThan("xs")]: {
-      display: "none",
-    },
-  },
-}));
-export default function LayoutShareProfile({ children }) {
+export default function LayoutProfile({ children }) {
   const [openQR, setOpenQR] = useState(false);
   const { classes } = useStyles();
 

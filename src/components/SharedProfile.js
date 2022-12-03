@@ -1,49 +1,13 @@
 import { Stack, Text } from "@mantine/core";
-import {
-  IconAt,
-  IconBrandFacebook,
-  IconBrandInstagram,
-  IconBrandLinkedin,
-  IconBrandYoutube,
-  IconHome,
-  IconPhone
-} from "@tabler/icons";
 import { useEffect, useState } from "react";
 import ClientAPI from "../client/clientApi";
 import ProgressSpinner from "../utils/components/ProgressLoader";
+import displayIconByProperty, { handleLink } from "../utils/iconSharedProfile";
+import useStyles from "../utils/style";
 
-const displaying = {
-  email: {
-    icon: <IconAt />,
-    link: true,
-  },
-  place: {
-    icon: <IconHome />,
-    link: true,
-  },
-  phone: {
-    icon: <IconPhone />,
-    link: true,
-  },
-  linkedin: {
-    icon: <IconBrandLinkedin color="#00abfb" />,
-    link: true,
-  },
-  youtube: {
-    icon: <IconBrandYoutube color="#ee0f0f" />,
-    link: true,
-  },
-  instagram: {
-    icon: <IconBrandInstagram color="#833ab4" />,
-    link: true,
-  },
-  facebook: {
-    icon: <IconBrandFacebook color="#5c79ff" />,
-    link: true,
-  },
-};
 
 export default function ShareProfile({ id }) {
+  const { classes } = useStyles();
   const [coord, setCoord] = useState();
   const [loader, setLoader] = useState(true);
 
@@ -58,54 +22,50 @@ export default function ShareProfile({ id }) {
     fetchUser();
   }, [id]);
 
-  const handleLink = (link, key) => {
-    switch (key) {
-      case "email":
-        window.location.href = `mailto:${link}`;
-        break;
-      case "phone":
-        window.location.href = `tel:${link}`;
-        break;
-      case "place":
-        window.location.href = `maps:${link}`;
-        break;
-      default:
-        window.location.href = link;
-    }
-  };
-
   if (loader) return <ProgressSpinner />;
-  delete coord._id;
-  delete coord.user_id;
-  delete coord.__v;
 
   return (
     <>
       <Text fz="xl" fw={600}>
         Ma carte de {coord.name}
       </Text>
-      <Stack spacing="sm">
-        {delete coord.name}
-        {Object.keys(coord).map((c) => {
-          return (
-            <Stack
-              sx={{
-                flexDirection: "row",
-                cursor: displaying[c].link ? "pointer" : "default",
-                textDecoration: displaying[c].link ? "underline" : "",
-                color: displaying[c].link ? "underline" : "",
-              }}
-              onClick={() => {
-                displaying[c].link && handleLink(coord[c], c);
-              }}
-            >
-              <>
-                {displaying[c].icon}
-                {coord[c]}
-              </>
-            </Stack>
-          );
-        })}
+      <Stack spacing="sm" mt={15}>
+        <Stack className={classes.container}>
+          {displayIconByProperty("email", coord.email)}
+          <Text size="md" onClick={() => handleLink(coord.email, "email")}>
+            {coord.email}
+          </Text>
+        </Stack>
+        <Stack className={classes.container}>
+          {displayIconByProperty("phone", coord.phone)}
+          <Text size="md" onClick={() => handleLink(coord.phone, "phone")}>
+            {coord.phone}
+          </Text>
+        </Stack>
+
+        <Stack className={classes.container}>
+          {displayIconByProperty("place", coord.place)}
+          <Text size="md" onClick={() => handleLink(coord.place, "place")}>
+            {coord.place}
+          </Text>
+        </Stack>
+      </Stack>
+      <Stack sx={{ flexDirection: "row" }} justify="center" mt={45}>
+        <Stack className={classes.container}>
+          {displayIconByProperty("linkedin", coord.linkedin)}
+        </Stack>
+
+        <Stack className={classes.container}>
+          {displayIconByProperty("youtube", coord.youtube)}
+        </Stack>
+
+        <Stack className={classes.container}>
+          {displayIconByProperty("instagram", coord.instagram)}
+        </Stack>
+
+        <Stack className={classes.container}>
+          {displayIconByProperty("facebook", coord.facebook)}
+        </Stack>
       </Stack>
     </>
   );
