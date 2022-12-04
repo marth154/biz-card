@@ -36,8 +36,8 @@ export default function ListContact() {
   //   };
 
 //   return <Button onClick={() => showContacts()}>Show contact</Button>;
-    // console.log(navigator.contacts, window.ContactsManager);
-    console.log("ici")
+    console.log(navigator.contacts);
+
     return (
         <>
             Contact

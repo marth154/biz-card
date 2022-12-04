@@ -33,7 +33,7 @@ export default function UserbyId() {
     };
     fetchUser();
   }, [id]);
-  console.log(user, id)
+  
   return (
     <>
       {user && id === user.id ? (
