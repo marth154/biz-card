@@ -124,7 +124,9 @@ export default function MyProfile({ coord, fetchCoord }) {
   if (!coord) return <ProgressSpinner />;
   return (
     <>
-      <ListContact />
+      {"contacts" in navigator && "ContactsManager" in window && (
+        <ListContact />
+      )}
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Stack
           justify="space-between"
@@ -195,7 +197,6 @@ export default function MyProfile({ coord, fetchCoord }) {
           </Accordion>
         </Stack>
       </form>
-
       {openNotif && (
         <Notification
           icon={<IconCheck size={18} />}

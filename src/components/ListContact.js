@@ -15,23 +15,15 @@ export default function ListContact() {
 
   async function createContacts(email, name, tel) {
     try {
-      var contact = navigator.contacts.create({
+      const contact = await navigator.contacts.create({
         displayName: "Martin",
         name: "Martin Test",
         birthday: "birthday",
         note: "DeleteMe",
       });
-      contact.save(
-        function (e) {
-          console.log(e);
-        },
-        function (e) {
-          console.log(e);
-        }
-      );
-      console.log("contact", contact)
+      console.log(contact)
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
     }
   }
 
