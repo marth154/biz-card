@@ -15,7 +15,6 @@ export default function ListContact() {
 
   async function createContacts(email, name, tel) {
     try {
-      var results = document.getElementById("contact_results");
       var contact = navigator.contacts.create({
         displayName: "Martin",
         name: "Martin Test",
@@ -29,7 +28,7 @@ export default function ListContact() {
 
       contact.save(
         function () {
-          results.innerHTML = ("Martin" || "Nameless contact") + " saved.";
+          console.log("Succes");
         },
         function (e) {
           console.log(e);
