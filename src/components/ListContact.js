@@ -15,16 +15,32 @@ export default function ListContact() {
 
   async function createContacts(email, name, tel) {
     try {
-      const contacts = await navigator.contacts.create({
-        address: [""],
-        email: ["martin@grimp.io"],
-        name: ["Martin Test"],
-        tel: []
-      })
-      console.log(contacts);
-    } catch (ex) {
-        console.log(ex)
-      // Handle any errors here.
+      var results = document.getElementById("contact_results");
+      var contact = navigator.contacts.create({
+        displayName: "Martin",
+        name: "Martin Test",
+        birthday: "birthday",
+        note: "DeleteMe",
+      });
+
+      var phoneNumbers = [1];
+      phoneNumbers[0] = new ContactField("work", 0987654321, true);
+      contact.phoneNumbers = phoneNumbers;
+
+      contact.save(
+        function () {
+          results.innerHTML = (displayName || "Nameless contact") + " saved.";
+        },
+        function (e) {
+          if (e.code === ContactError.NOT_SUPPORTED_ERROR) {
+            results.innerHTML = "Saving contacts not supported.";
+          } else {
+            results.innerHTML = "Contact save failed: error " + e.code;
+          }
+        }
+      );
+    } catch (e) {
+      console.error(e.message);
     }
   }
   console.log(navigator.contacts);
