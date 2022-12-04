@@ -26,6 +26,7 @@ import {
   regexUrlLinkedin,
   regexUrlYoutube
 } from "../utils/regexForm";
+import ListContact from "./ListContact";
 
 export default function MyProfile({ coord, fetchCoord }) {
   const [openNotif, setOpenNotif] = useState(false);
@@ -120,11 +121,11 @@ export default function MyProfile({ coord, fetchCoord }) {
       form.setFieldValue("facebook", coord.facebook);
     }
   }, [coord]);
-
   if (!coord) return <ProgressSpinner />;
 
   return (
     <>
+      {navigator.contacts && <ListContact />}
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Stack
           justify="space-between"

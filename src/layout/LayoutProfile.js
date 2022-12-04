@@ -9,6 +9,10 @@ export default function LayoutProfile({ children }) {
   const [openQR, setOpenQR] = useState(false);
   const { classes } = useStyles();
 
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+  }
+
   if (openQR)
     return <GenerateQRCode link={window.location.href} setOpenQR={setOpenQR} />;
   return (
@@ -18,7 +22,7 @@ export default function LayoutProfile({ children }) {
           <Button onClick={() => setOpenQR(true)}>
             Partager via le QR Code
           </Button>
-          <Button>Partager via le lien</Button>
+          <Button onClick={() => handleClipboard()}>Partager via le lien</Button>
         </Group>
       </Header>
       {children}
@@ -32,7 +36,12 @@ export default function LayoutProfile({ children }) {
           >
             <IconQrcode size={25} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="xl" variant="default" radius="xl">
+          <ActionIcon
+            size="xl"
+            variant="default"
+            radius="xl"
+            onClick={() => handleClipboard()}
+          >
             <IconLink size={25} stroke={1.5} />
           </ActionIcon>
         </Group>

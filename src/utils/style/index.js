@@ -2,6 +2,9 @@ import { createStyles } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   footer: {
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
     bottom: 0,
     zIndex: 999,
     width: "100%",
@@ -12,9 +15,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   groupFooter: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -36,6 +36,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     flexDirection: "row",
     cursor: "pointer",
+    scrollbarWidth: "none",
     textDecoration: "underline",
   },
   text: { textOverflow: "ellipsis", overflow: "hidden" },

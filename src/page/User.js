@@ -1,3 +1,4 @@
+import { Container, Stack } from "@mantine/core";
 import { gapi } from "gapi-script";
 import React, { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
@@ -6,6 +7,10 @@ import getLocaleStorage from "../utils/function/getLocalStorage";
 import setCoordLocalStorage from "../utils/function/setLocalStorage";
 
 export default function User() {
+  useEffect(() => {
+    const { user } = getLocaleStorage();
+    if (user != null) window.location.href = `/${user.id}`;
+  }, []);
   const clientId = process.env.REACT_APP_GOOGLE_AUTH;
   const handleSuccess = async (googleData) => {
     const res = await new ClientAPI("/user/auth").post({ googleData });
@@ -27,20 +32,20 @@ export default function User() {
     gapi.load("client:auth2", initClient);
   });
 
-  useEffect(() => {
-    const { user } = getLocaleStorage();
-    if (user != null) window.location.href = `/${user.id}`;
-  }, []);
   return (
-    <div className="User">
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Continue with Google"
-        onSuccess={handleSuccess}
-        onFailure={handleError}
-        redirectUri={encodeURI("http://localhost:3000")}
-        cookiePolicy={"single_host_origin"}
-      />
-    </div>
+    <>
+      <Container>
+        <Stack align="center" sx={{ height: "50%" }}>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Continue with Google"
+            onSuccess={handleSuccess}
+            onFailure={handleError}
+            redirectUri={encodeURI("http://localhost:3000")}
+            cookiePolicy={"single_host_origin"}
+          />
+        </Stack>
+      </Container>
+    </>
   );
 }
