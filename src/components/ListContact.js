@@ -15,7 +15,7 @@ export default function ListContact() {
 
   async function createContacts(email, name, tel) {
     try {
-      const contacts = await navigator.contacts.save({
+      const contacts = await navigator.contacts.create({
         address: [""],
         email: ["martin@grimp.io"],
         name: ["Martin Test"],
