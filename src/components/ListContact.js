@@ -13,21 +13,33 @@ export default function ListContact() {
     }
   }
 
-  async function createContacts(email, name, tel) {
-    try {
-      const contact = await navigator.contacts.save({
-        displayName: "Martin",
-        name: "Martin Test",
-        birthday: "birthday",
-        note: "DeleteMe",
-      });
-      console.log(contact)
-    } catch (e) {
-      console.error(e);
-    }
-    console.log("Contact")
-  }
+  async function createContacts() {
+    // create
 
+    var displayName = "DispplayName";
+    var nickname = "Nickename";
+
+    var contact = navigator.contacts.create();
+    contact.displayName = displayName;
+    contact.nickname = nickname;
+
+    contact.name = "Name Lastname";
+
+    // save
+    contact.save(onSaveSuccess, onSaveError);
+
+    // onSaveSuccess: Get a snapshot of the current contacts
+
+    console.log("Contact");
+  }
+  const onSaveSuccess = (contact) => {
+    alert("Save Success");
+  };
+
+  // onSaveError: Failed to get the contacts
+  const onSaveError = (contactError) => {
+    alert("Error = " + contactError.code);
+  };
   return (
     <>
       <Button onClick={() => getContacts()}>Get Contacts </Button>
