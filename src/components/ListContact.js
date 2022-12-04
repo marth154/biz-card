@@ -23,6 +23,7 @@ export default function ListContact() {
       })
       console.log(contacts);
     } catch (ex) {
+        console.log(ex)
       // Handle any errors here.
     }
   }
