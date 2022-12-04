@@ -122,10 +122,9 @@ export default function MyProfile({ coord, fetchCoord }) {
     }
   }, [coord]);
   if (!coord) return <ProgressSpinner />;
-
   return (
     <>
-      {navigator.contacts && <ListContact />}
+      <ListContact />
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Stack
           justify="space-between"
