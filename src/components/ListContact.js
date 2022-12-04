@@ -21,24 +21,19 @@ export default function ListContact() {
         birthday: "birthday",
         note: "DeleteMe",
       });
-
-      var phoneNumbers = [1];
-      //   phoneNumbers[0] = 0987654321;
-      contact.phoneNumbers = phoneNumbers;
-
       contact.save(
-        function () {
-          console.log("Succes");
+        function (e) {
+          console.log(e);
         },
         function (e) {
           console.log(e);
         }
       );
+      console.log("contact", contact)
     } catch (e) {
       console.error(e.message);
     }
   }
-  console.log(navigator.contacts);
 
   return (
     <>
