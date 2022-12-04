@@ -24,19 +24,15 @@ export default function ListContact() {
       });
 
       var phoneNumbers = [1];
-      phoneNumbers[0] = new ContactField("work", 0987654321, true);
+      //   phoneNumbers[0] = 0987654321;
       contact.phoneNumbers = phoneNumbers;
 
       contact.save(
         function () {
-          results.innerHTML = (displayName || "Nameless contact") + " saved.";
+          results.innerHTML = ("Martin" || "Nameless contact") + " saved.";
         },
         function (e) {
-          if (e.code === ContactError.NOT_SUPPORTED_ERROR) {
-            results.innerHTML = "Saving contacts not supported.";
-          } else {
-            results.innerHTML = "Contact save failed: error " + e.code;
-          }
+          console.log(e);
         }
       );
     } catch (e) {
