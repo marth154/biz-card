@@ -38,7 +38,7 @@ export default function UserbyId() {
     <>
       {user && id === user.id ? (
         <LayoutProfile>
-          <Container sx={{ overflow: "scroll", paddingBottom: "2.5rem" }}>
+          <Container sx={{ paddingBottom: "2.5rem" }}>
             <MyProfile coord={coord} fetchCoord={fetchCoord} />
           </Container>
         </LayoutProfile>

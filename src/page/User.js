@@ -34,8 +34,8 @@ export default function User() {
 
   return (
     <>
-      <Container>
-        <Stack align="center" sx={{ height: "50%" }}>
+      <Container sx={{ height: "80vh" }}>
+        <Stack align="center" justify="center" sx={{ height: "100%" }}>
           <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"
