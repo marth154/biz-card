@@ -15,7 +15,6 @@ export default function User() {
   const handleSuccess = async (googleData) => {
     const res = await new ClientAPI("/user/auth").post({ googleData });
     setCoordLocalStorage(undefined, res.data);
-    console.log(res.data);
     window.location.href = `/${res.data.id}`;
   };
 
@@ -23,13 +22,12 @@ export default function User() {
     console.log("Error : " + error);
   };
   useEffect(() => {
-    const initClient = () => {
-      gapi.client.init({
+    gapi.load("client:auth2", () => {
+      gapi.auth2.init({
         clientId: clientId,
         scope: "",
       });
-    };
-    gapi.load("client:auth2", initClient);
+    });
   });
 
   return (
