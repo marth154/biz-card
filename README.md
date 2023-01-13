@@ -12,3 +12,7 @@ yarn || npm i
 ### Start project
 
 yarn start || npm run start
+
+## Discord
+
+Marth1#1469
